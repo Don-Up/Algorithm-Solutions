@@ -24,7 +24,7 @@ if no characters could be collected, return empty string
 
 ## Solution Approach
 
-![image-20240708195748549](C:\Users\yexudong\AppData\Roaming\Typora\typora-user-images\image-20240708195748549.png)
+![image-20240708195748549](.\img\image-20240708195748549.png)
 
 As shown in the figure, to solve this question, we need to traverse the two-dimensional array and collect these letters along the path. End up returning a string consisting of these letters.
 
@@ -50,7 +50,7 @@ If the direction is up-right, decrement the row by one and the column by one.
 
 #### Change Direction
 
-![image-20240708203853295](C:\Users\yexudong\AppData\Roaming\Typora\typora-user-images\image-20240708203853295.png)
+![image-20240708203853295](.\img\image-20240708203853295.png)
 
 As shown in the figure, if the path goes beyond the array range (when row === rows or row === -1), we need to change the direction (direction *= -1) and reassign the row.
 
