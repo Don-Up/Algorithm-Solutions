@@ -53,7 +53,7 @@ Declare an array `filteredArray` to store elements that meet the specified crite
 
 We start a `for...of` loop on `s.splite("")` and get `char` . In each iteration, if `char` is either a letter or a number, we push it into `filteredArray`. We can determine if `char` is a letter by passing it into `/^[a-zA-Z]$/.test(char)`, and determine if `char` is a number by using `!isNaN(parseInt(char))`.
 
-> `/^[a-zA-Z]$/` is read out as Forward slash, caret, left bracket, a, hyphen, z, A, hyphen, Z, right bracket, dollar, forward slash.
+> `/^[a-zA-Z]$/` can be read out as Forward slash, caret, left bracket, a, hyphen, z, A, hyphen, Z, right bracket, dollar, forward slash.
 
  ```js
  const filteredArray = []
