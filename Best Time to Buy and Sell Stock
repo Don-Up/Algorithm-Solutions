@@ -51,6 +51,8 @@ Then we use a for..of loop on `prices`. In each iteration, we need to do two thi
 
 Once the loop is over, we return `maxProfit`.
 
+<audio src="../../Downloads/2024-07-19-141114_132987.mp3"></audio>
+
 ## Full Code
 
 ```js

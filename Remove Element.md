@@ -86,10 +86,9 @@ Use a for loop to iterate over `nums`. Within each iteration, if `nums[i]` is no
  */
 var removeElement = function(nums, val) {
     let k = 0
-    for(let i = 0;i<nums.length;i++){
-        if(nums[i] !== val){
-            nums[k] = nums[i]
-            k++
+    for(num of nums){
+        if(num !== val){
+            nums[k++]=num
         }
     }
     return k

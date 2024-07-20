@@ -61,7 +61,7 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
 
 To merge the two sorted arrays `nums1` and `nums2` into `nums1` in-place, we can utilize a two-pointer approach starting from the end of both arrays. This method ensures that we avoid the need for extra space and efficiently merge the arrays in `O(m + n)` time complexity.
 
-We need a pointer to record `num1`'s iteration position, a pointer to record `num2`'s iteration position, and a pointer to record the position of the latest insertion in the result array.
+We need a pointer `i` to record `num1`'s iteration position, a pointer `j` to record `num2`'s iteration position, and a pointer `k` to record the position of the latest insertion in the result array.
 
 ```js
 let i = m - 1; 
