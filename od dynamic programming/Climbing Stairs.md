@@ -1,5 +1,7 @@
 # [Climbing Stairs](https://leetcode.cn/problems/climbing-stairs/)
 
+<img src="assets/image-20240720102752685.png" alt="image-20240720102752685" style="zoom: 67%;" />
+
 You are climbing a staircase. It takes `n` steps to reach the top.
 
 Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?
