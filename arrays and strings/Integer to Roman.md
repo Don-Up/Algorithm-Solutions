@@ -68,12 +68,51 @@ Note: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal 
 
 ## Approach Solution
 
-The final revised sentences are: "To convert an integer into a Roman numeral, we can use predefined symbols and their corresponding values. Then, check each symbol in sequence from high to low, and continuously subtract the corresponding values until `num` becomes 0.
+To convert an integer into a Roman numeral, we can use the greedy algorithm according to the rules of Roman numerals. Process each Roman numeral in order from largest to smallest. When the integer `num` is greater than or equal to the value of the current symbol, add the symbol to the result string and subtract its value from `num`.
 
-### Steps
+```js
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var intToRoman = function(num) {
+    // 1. Define arrays of digits and symbols
+    
+    // val stores integers corresponding to Roman numerals from largest to smallest.
+    const val = [
+        1000, 900, 500, 400, 100, 90, 
+        50, 40, 10, 9, 5, 4, 1
+    ];
+    
+    // symbols stores corresponding symbols of roman numerals
+    const symbols = [
+        "M", "CM", "D", "CD", "C", "XC", 
+        "L", "XL", "X", "IX", "V", "IV", "I"
+    ];
+    
+    // 2. Traverse and construct the roman numeral string.
+    
+    // Initialize an empty string `roman` to store the final roman numeral.
+    let roman = ''; 
+    // Use a loop to traverse `val`, for each value `val[i]`, check if the current `num` is greater than or equal to this value.
+    for (let i = 0; i < val.length; i++) {
+        while (num >= val[i]) {
+            // If so, add symbols[i] to roman, then process the next symbol, and subtract `val[i]`.
+            roman += symbols[i];
+            num -= val[i];
+        }
+    }
+    //
+    return roman;
+};
 
-1. Create an array containing all Roman numerals and their corresponding values, sorted in descending order.
-2. Initialize an empty string `result` to store results.
-3. Traverse the array of Roman numeral symbols. For each symbol, calculate how many times it can occur, append it to `result`, and subtract its corresponding value from `num`.
-4. Return the result string.
+// 示例调用
+console.log(intToRoman(3));    // 输出："III"
+console.log(intToRoman(4));    // 输出："IV"
+console.log(intToRoman(9));    // 输出："IX"
+console.log(intToRoman(58));   // 输出："LVIII"
+console.log(intToRoman(1994)); // 输出："MCMXCIV"
+```
+
+
 
