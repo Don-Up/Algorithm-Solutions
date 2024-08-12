@@ -6,8 +6,8 @@ Suppose you have solved above problem, now let's take a look at [React.createEle
 React.createElement(  type,  [props],  [...children])
 ```
 
-1. First argument is type, it could be set to Custom Component, but here in this problem, it would only be HTML tag name
-2. Second argument is props, here in this problem, it would only be the (common) camelCased HTML attributes
+1. First argument is type, it could be set to Custom Component, but here in this problem, **it would only be HTML tag name**.
+2. Second argument is props, here in this problem, it would only be the (common) camelCased HTML attributes.
 3. the rest arguments are the children, which in React supports many data types, but in this problem, it only has the element type of MyElement, or string for TextNode.
 
 **You are asked to create your own createElement() and render()**, so that following code could create the exact HTMLElement in [113. Virtual DOM I](https://bigfrontend.dev/problem/Virtual-DOM-I).
@@ -17,7 +17,7 @@ const h = createElement
 render(h(
   'div',
   {},
-  h('h1', {}, ' this is '),
+  h('h1', {}, ' this is '), // TextNode
   h(
     'p',
     { className: 'paragraph' },
@@ -61,7 +61,6 @@ function createElement(type, props, ...children) {
     children
   }
 }
-
 
 /**
  * It takes a virtual DOM element and creates the actual DOM element.

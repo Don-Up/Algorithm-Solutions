@@ -17,8 +17,8 @@ Your `pipe()` would be used to generate new functions
 
 ```js
 pipe([
-  times(2),
-  times(3)
+  times(2), // (x) => x * 2
+  times(3)  // (x) => x * 3
 ])  
 // x * 2 * 3
 
@@ -54,7 +54,22 @@ function pipe(funcs) {
 
 ## Solution Approach
 
+```js
+const times = (y) => (x) => x * y;
 
+const pipeFunc = pipe([
+  times(2), // (x) => x * 2
+  times(3)  // (x) => x * 3
+]);  
+
+pipeFunc(1); // 1 * 2 * 3
+```
+
+As we can see from the above example, `pipe` returns a function that serves as the initial value.
+
+In the array of functions, the `x` of the first function is the initial value, the `x` of the second function is the result of the first function's computation, and so on.
+
+We can use `reduce` to easily implement this chaining procedure.
 
 ## Full Code
 

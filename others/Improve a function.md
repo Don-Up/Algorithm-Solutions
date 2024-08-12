@@ -1,5 +1,9 @@
 #  Improve a function
 
+<audio src="assets/Improve%20a%20function.mp3"></audio>
+
+Given an input of an array, which is made of items with at least three properties, for example:
+
 ```js
 // Given an input of array, 
 // which is made of items with >= 3 properties
@@ -24,79 +28,145 @@ function excludeItems(items, excludes) {
 ```
 
 1. What does this function `excludeItems` do?
+
+   > The function excludeItems is designed to filter out items from the input array items based on the exclusion criteria provided in the excludes array. Each exclusion criterion in excludes is a key-value pair, where key is the property to check, and value is the value to exclude.
+
 2. Is this function working as expected ?
+
+   > No, the provided function includes items that match the exclusion criteria instead of excluding them.
+
 3. What is the time complexity of this function?
+
+   > The time complexity is O(n * m), where n is the number of items and m is the number of exclusion criteria.
+
 4. How would you optimize it ?
+
+   > To optimize, we can use a Set for exclusions and combine all exclusions into a single filter pass.
 
 *note*
 
 we only judge by the result, not the time cost. please submit the best approach you can.
 
-## Soltion Approach
+## Solution Approach
 
-### Analysis:
+The function `excludeItems` is designed to filter out items from the input array `items` based on the exclusion criteria provided in the `excludes` array. Each exclusion criterion in `excludes` is a key-value pair, where `k` is the property to check, and `v` is the value to exclude.
 
-1. **Function Purpose**:
-   The `excludeItems` function is intended to filter out items from an array based on an exclude array. Each exclude array entry has a key (`k`) and a value (`v`), and the function should exclude items that have a matching key-value pair.
+### Function Explanation
 
-2. **Function Behavior**:
-   The current implementation of `excludeItems` is not working as expected. It should exclude items that match any of the key-value pairs in the `excludes` array, but the current implementation is keeping items that match the criteria instead of excluding them.
+1. **Input:**
+   - `items`: An array of objects, where each object has at least three properties.
+   
+     ```js
+     let items = [
+       {color: 'red', type: 'tv', age: 18}, 
+       {color: 'silver', type: 'phone', age: 20},
+       {color: 'blue', type: 'book', age: 17}
+     ] 
+     ```
+   
+   - `excludes`: An array of objects, each with properties `k` (key) and `v` (value) that specify the exclusion criteria.
+   
+     ```js
+     const excludes = [ 
+       {k: 'color', v: 'silver'}, 
+       {k: 'type', v: 'tv'}, 
+       ...
+     ] 
+     ```
+   
+2. **Process:**
+   
+   - For each exclusion criterion in `excludes`, filter out the items that match the criterion.
+   
+     ![image-20240728131058847](assets/image-20240728131058847.png)
+   
+3. **Output:**
+   - The function returns an array of items that do not match any of the exclusion criteria.
 
-3. **Time Complexity**:
-   The time complexity of the current implementation is \(O(n \times m)\), where \(n\) is the number of items in the `items` array and \(m\) is the number of exclude pairs. This is because it performs a filter operation for each exclude pair, iterating over the items array each time.
+### Issues in the Provided Function
 
-4. **Optimization**:
-   The optimized approach should correctly exclude items that match any of the key-value pairs and do so efficiently.
+1. **Logic Error:**
+   
+   - The provided function includes items that match the exclusion criteria instead of excluding them. This is evident from the line:
+     ```javascript
+     items = items.filter(item => item[pair.k] === item[pair.v])
+     ```
+   - This line should exclude items that match the criterion, but **it actually includes them.**
+   
+2. **Expected Function:**
+   - The correct function should filter out items that match the exclusion criteria.
 
-### Optimized Solution:
+### Corrected Function
 
-To optimize and correct the function:
-
-1. Use a single filter operation.
-2. Check for each item if it matches any of the exclude criteria.
-
-Here is the optimized implementation:
+Here is the corrected function:
 
 ```javascript
 /**
  * @param {object[]} items
- * @param { Array<{k: string, v: any}> } excludes
+ * @param { Array< {k: string, v: any} >} excludes
+ * @return {object[]}
+ */
+function excludeItems(items, excludes) { 
+  excludes.forEach(pair => { 
+    items = items.filter(item => item[pair.k] !== pair.v);
+  });
+  return items;
+} 
+```
+
+### Time Complexity
+
+- **Time Complexity:** The time complexity is O(n * m), where `n` is the number of items and `m` is the number of exclusion criteria. This is because for each exclusion criterion, the function iterates through all items to filter them.
+
+![image-20240728132025809](assets/image-20240728132025809.png)
+
+### Optimization
+
+1. **Using a Set for Exclusions:**
+   - Convert the `excludes` array into a more efficient data structure, such as a `Set`, to reduce the complexity of checking whether an item should be excluded.
+
+2. **Combining Exclusions:**
+   - Instead of applying each exclusion one by one, combine them into a single filter pass.
+
+Here is an optimized version:
+
+```javascript
+/**
+ * @param {object[]} items
+ * @param { Array< {k: string, v: any} >} excludes
  * @return {object[]}
  */
 function excludeItems(items, excludes) {
-  // Convert the exclude array to a set of conditions for faster lookups
-  const excludeSet = new Set(excludes.map(({ k, v }) => `${k}:${v}`));
+  // k: the property to check
+  // v: a set of values to exclude for that property
+  const excludeMap = new Map();
 
-  // Filter items that do not match any of the exclude conditions
+  excludes.forEach(pair => {
+    if (!excludeMap.has(pair.k)) {
+      excludeMap.set(pair.k, new Set());
+    }
+    excludeMap.get(pair.k).add(pair.v);
+  });
+
   return items.filter(item => {
-    return !excludes.some(pair => item[pair.k] === pair.v);
+    for (const [key, values] of excludeMap.entries()) {
+      if (values.has(item[key])) {
+        return false;
+      }
+    }
+    return true;
   });
 }
-
-// Example usage:
-let items = [
-  {color: 'red', type: 'tv', age: 18}, 
-  {color: 'silver', type: 'phone', age: 20},
-  {color: 'blue', type: 'book', age: 17}
-]; 
-
-const excludes = [ 
-  {k: 'color', v: 'silver'}, 
-  {k: 'type', v: 'tv'}
-]; 
-
-console.log(excludeItems(items, excludes));
-// Output should be: [ {color: 'blue', type: 'book', age: 17} ]
 ```
 
-### Explanation of the Optimized Function:
+![image-20240728133544747](assets/image-20240728133544747.png)
 
-1. **Convert Excludes to a Set**:
-   - Create a set from the excludes array to enable faster lookups. This step is optional but demonstrates a common optimization pattern.
+### Explanation of Optimized Function
 
-2. **Filter Items**:
-   - Use a single filter operation to check each item.
-   - For each item, use the `some` method to determine if any of the exclude conditions are met.
-   - If an item matches any exclude condition, it is excluded from the result.
+1. **Exclusion Map:**
+   - Create a map where the key is the property to check and the value is a set of values to exclude for that property.
 
-This approach ensures that we filter the items array in a single pass, making it more efficient and straightforward. The resulting time complexity is still \(O(n \times m)\), but the logic is clear and correct.
+2. **Single Pass Filter:**
+   - Use a single `filter` pass to check if any item's property matches the exclusion criteria in the map. If it does, exclude that item.
+
+This optimized version improves efficiency by reducing the number of times the items array is iterated over, combining all exclusions into a single filter operation.

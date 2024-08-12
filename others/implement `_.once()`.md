@@ -18,6 +18,8 @@ onced(2)
 // 1, even 2 is passed, previous result is returned 
 ```
 
+<audio src="assets/implement%20%60_.once()%60.mp3"></audio>
+
 ## Solution Approach
 
 To implement a function that can be called only once, we need to use closures to maintain a variable `isCalled` that indicates whether `func` has been called, as well as a variable `result` to store the result of the first call.

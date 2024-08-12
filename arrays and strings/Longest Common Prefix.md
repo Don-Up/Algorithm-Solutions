@@ -44,3 +44,30 @@ Explanation: There is no common prefix among the input strings.
  }
  ```
 
+```js
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function(strs) {
+    let prefix = ""
+    let set = new Set()
+    let index = 0
+    while(index<strs[0].length){
+        for(let str of strs){
+            if(!str[index]){
+                return prefix
+            }
+            set.add(str[index])
+            if(set.size>1){
+                return prefix
+            }
+        }
+        prefix+=strs[0][index]
+        set.clear()
+        index++
+    }
+    return prefix
+};
+```
+

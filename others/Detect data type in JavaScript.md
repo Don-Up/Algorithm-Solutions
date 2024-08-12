@@ -21,6 +21,8 @@ detectType(null) // 'null'
 
 ## Solution Approach
 
+<audio src="assets/Detect%20data%20type%20in%20JavaScript.mp3"></audio>
+
 In JavaScript, data types are generally divided into primitive types and object types. 
 
 There are some complex cases that need to be handled, such as `null` being a primitive type, but `typeof null` returning 'object', as well as several special object types like `Function`, `Date`, `Map`, and `Set`.
@@ -37,7 +39,7 @@ if (data === null) {
 
 Next, we call `typeof` on `data` and assign the result to a string `type`. If `type` is not equal to `"object"`, we return `type`.
 
-After that, we need to handle special objects like `Function` and `Map`. We call `Object.prototype.toString.call` with `data` to get the `typeString`. `typeString` shoud be  comprised of square brackets, `object` and a specific type, so we can check it using regex.
+After that, we need to handle special objects like `Function` and `Map`. We call `Object.prototype.toString.call` with `data` to get the `typeString`. `typeString` should be  comprised of square brackets, `object` and a specific type, so we can check it using regex.
 
 ```js
 const typeString = Object.prototype.toString.call(data);

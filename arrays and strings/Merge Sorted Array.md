@@ -84,6 +84,10 @@ while (i >= 0 && j >= 0) {
 However, we need to consider another situation: if `m` is equal to 0, the while loop will not run. In this case, we need to add another while loop with the condition `j >= 0`. Within this loop, we simply assign `nums2[j--]` to `nums1[k--]`.
 
 ```js
+// num1 = [0] 
+// m = 0 
+// nums2 =[1]
+// n = 1
 while (j >= 0) {
 	nums1[k--] = nums2[j--];
 }
@@ -102,7 +106,7 @@ Now, everything is done.
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(nums1, m, nums2, n) {
-   let i = m - 1; 
+    let i = m - 1; 
     let j = n - 1; 
     let k = m + n - 1; 
     while (i >= 0 && j >= 0) {

@@ -15,6 +15,8 @@ largestDiff([1])
 // 0
 ```
 
+<audio src="assets/Find%20the%20largest%20difference.mp3"></audio>
+
 ## Solution Approach
 
 To find the largest difference in a number array, we just need to find the maximum and the minimum values, and calculate the difference between them.

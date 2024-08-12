@@ -1,5 +1,7 @@
 # Implement a general memoization function - `memo()`
 
+<audio src="assets/Implement%20a%20general%20memoization%20function%20-%20%60memo()%60.mp3"></audio>
+
 [Memoization](https://whatthefuck.is/memoization) is a common technique to boost performance. If you use React, you definitely have used `React.memo` before.
 
 Memoization is also commonly used in algorithm problem, when you have a recursion solution, in most cases, you can improve it by memoization, and then you might be able to get a Dynamic Programming approach.

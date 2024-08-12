@@ -1,12 +1,16 @@
 # Traverse DOM level by level
 
+<audio src="assets/Traverse%20DOM%20level%20by%20level.mp3"></audio>
+
 Given a DOM tree, flatten it into an one dimensional array, in the order of layer by layer, like below.
 
-<img src="https://cdn.bfe.dev/bfe/img/ykqFdOIOaXFyn2uZ8h5Lt02sFaYb5eZ8_1063x546_1598232821941.png" alt="img" style="zoom: 50%;" />
+![image-20240728141129181](assets/image-20240728141129181.png)
 
 ## Solution Approach
 
 To flatten a DOM tree into a one-dimensional array in the order of layer by layer, also known as breadth-first traversal, you can use a queue to traverse the tree level by level.
+
+![image-20240728142745140](assets/image-20240728142745140.png)
 
 ```js
 /**
@@ -33,8 +37,7 @@ function flatten(root) {
         }
     }
     
-    // after the queue is empty, return the `result` array chich contains all elements
-    // in a breadth-first order.
+    // after the queue is empty, return the `result` array which contains all elements in a breadth-first order.
     return result
 }
 ```

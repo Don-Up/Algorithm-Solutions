@@ -1,5 +1,7 @@
 # decode message
 
+<audio src="assets/decodemessage.mp3"></audio>
+
 Your are given a 2-D array of characters. There is a hidden message in it.
 
 ```js
@@ -27,6 +29,8 @@ if no characters could be collected, return empty string
 ![image-20240708195748549](img\image-20240708195748549.png)
 
 As shown in the figure, to solve this question, we need to traverse the two-dimensional array and collect these letters along the path. End up returning a string consisting of these letters.
+
+<audio src="assets/decodemessage-a.mp3"></audio>
 
 ### variable declarations
 

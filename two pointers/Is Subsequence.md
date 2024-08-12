@@ -112,3 +112,18 @@ var isSubsequence = function(s, t) {
     return position === sArr.length
 };
 ```
+
+```js
+var isSubsequence = function(s, t) {
+    const findResult = new Array(s.length).fill(false)
+    let currentIndex = 0
+    for(let char of t){
+        if(char === s[currentIndex] && !findResult[currentIndex]){
+            findResult[currentIndex] = true
+            currentIndex++
+        }
+    }
+    return currentIndex === s.length
+};
+```
+
